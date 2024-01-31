@@ -2,20 +2,24 @@
 #include <map>
 #include <algorithm>
 
-Commands resolveCommand(const std::string& command) {
-    static const std::map<std::string, Commands> commandsString {
+using namespace std;
+
+Commands resolveCommand(const string& command) {
+    static const map<string, Commands> commandsString {
         { "use", USE },
         { "select", SELECT },
+        { "create", CREATE },
+        { "display", DISPLAY }
     };
 
-    std::string cmd = command.substr(0, command.find(" "));
-    std::transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
+    string cmd = command.substr(0, command.find(" "));
+    transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
 
     auto it = commandsString.find(cmd);
     return it != commandsString.end() ? it->second : UNKNOWN;
 }
 
-std::string extractCommandArgument(const std::string& command) {
+string extractCommandArgument(const string& command) {
     size_t spaceIndex = command.find(" ") + 1;
     return spaceIndex < command.size() ? command.substr(spaceIndex) : "";
 }

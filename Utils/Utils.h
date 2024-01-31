@@ -3,13 +3,18 @@
 
 #include <string>
 
+using namespace std;
+
 enum Commands {
     USE,
     SELECT,
+    CREATE,
+    DISPLAY,
     UNKNOWN
 };
 
-Commands resolveCommand(const std::string& command);
-std::string extractCommandArgument(const std::string& command);
+Commands resolveCommand(const string& command);
+string extractCommandArgument(const string& command);
+string extractNameCreate(const string& option);
 
 #endif // UTILS_H
